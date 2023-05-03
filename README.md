@@ -1,4 +1,4 @@
-# 🚀 coderhouseBakend 🚀
+# 🚀 coderhouseBackend 🚀
 Repositorio que contiene los entregables del curso.
 
 ## Tabla de Contenidos
@@ -32,11 +32,19 @@ Indica los requisitos necesarios para poder utilizar el proyecto, como software 
 
 ## Instalación
 
-Proporciona instrucciones paso a paso sobre cómo instalar el proyecto en un entorno local. Incluye comandos o enlaces a recursos adicionales si es necesario.
+```js
+    npm i
+```
 
 ## Uso
 
-Explica cómo utilizar el proyecto. Proporciona ejemplos de código, capturas de pantalla o cualquier otra información relevante para que los usuarios comprendan cómo interactuar con el proyecto.
+```js
+    npm run dev
+```
+
+```js
+    npm start
+```
 
 ## Contribución
 
