@@ -1,6 +1,6 @@
 import express, { Router } from 'express'
-import { usersRouter } from './users/users.routes.js'
-import { sessionsRouter } from './sessions/sessions.routes.js'
+import { usersRouter } from './users/router.js'
+import { sessionsRouter } from './sesions/router.js'
 
 export const apiRouter = Router()
 

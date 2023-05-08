@@ -1,28 +1,26 @@
-import { usersDb } from '../../../services/daos/models/mongo/user.model.js'
+/* eslint-disable camelcase */
+import { User } from '../../../services/daos/classes/Users.js'
+import { usersService } from '../../../services/daos/manager/user/users.services.js'
+import { hash, encryptJWT } from '../../../services/utils/criptografia.js'
 
-export async function postUsuarios (req, res, next) {
-  try {
-    // console.log(req.body)
-    let newUser = req.body
+export const postUser = async (req, res, next) => {
+  const { email, password, first_name, last_name, age, rol } = req.body
 
-    const rol = newUser.email === process.env.ADMIN_EMAIL && newUser.password === process.env.ADMIN_PASSWORD ? 'admin' : 'user'
+  const user = new User({
+    email,
+    password: hash(password),
+    first_name,
+    last_name,
+    age,
+    rol
+  })
 
-    newUser = {
-      ...req.body,
-      rol
-    }
-    const usuarioCreado = await usersDb.create(newUser)
+  await usersService.save(user)
 
-    req.session.user = {
-      name: usuarioCreado.first_name + ' ' + usuarioCreado.last_name,
-      email: usuarioCreado.email,
-      age: usuarioCreado.age,
-      rol
-    }
+  res.cookie('jwt_authorization', encryptJWT(user), {
+    signed: true,
+    httpOnly: true
+  })
 
-    res.status(201).json(usuarioCreado)
-  } catch (error) {
-    res.status(500)
-    next(error)
-  }
+  res.status(201).json(user)
 }

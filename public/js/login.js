@@ -28,7 +28,7 @@ if (formLogin instanceof HTMLFormElement) {
       })
 
       if (status === 201) {
-        window.location.href = '/profile'
+        window.location.href = '/web/perfil'
       } else {
         console.log('[login] estado inesperado: ' + status)
       }

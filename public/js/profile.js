@@ -10,7 +10,7 @@ if (formLogout instanceof HTMLFormElement) {
     })
 
     if (status === 200) {
-      window.location.href = '/login'
+      window.location.href = '/web/login'
     } else {
       console.log('[logout] estado inesperado: ' + status)
     }
