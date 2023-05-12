@@ -15,7 +15,7 @@ class UsersServices {
     try {
       const user = this.#usersDb.find(u => u.email === email)
       if (!user) throw new Error('Usuario no encontrado')
-      console.log('🐦 findByUser:::__:::🔷')
+      console.log('🐦 findByUser:::__:🔷')
       console.log(user)
       return { ...user }
     } catch (e) {
