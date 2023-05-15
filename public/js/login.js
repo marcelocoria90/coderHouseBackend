@@ -18,6 +18,9 @@ if (formLogin instanceof HTMLFormElement) {
         password: input_password.value
       }
 
+      console.log('datosUsuario::.::🚩')
+      console.log(datosUsuario)
+
       const { status } = await fetch('/api/sesiones', {
         method: 'POST',
         headers: {
@@ -28,7 +31,9 @@ if (formLogin instanceof HTMLFormElement) {
       })
 
       if (status === 201) {
-        window.location.href = '/web/perfil'
+        // window.location.href = '/web/perfil'
+        console.log('🐦 login.js:::__:::🔶')
+        console.log(datosUsuario)
       } else {
         console.log('[login] estado inesperado: ' + status)
       }

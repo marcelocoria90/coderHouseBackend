@@ -35,3 +35,8 @@ io.on('connection', async clientSocket => {
 
   io.sockets.emit('updateMessages', messagesFront)
 })
+
+app.use((req, res, next) => {
+  req.io = io
+  next()
+})

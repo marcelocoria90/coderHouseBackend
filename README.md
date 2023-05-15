@@ -3,32 +3,32 @@ Repositorio que contiene los entregables del curso.
 
 ## Tabla de Contenidos
 
-- [Introducción](#introducción)
-- [Características](#características)
-- [Demo](#demo)
-- [Requisitos](#requisitos)
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Contribución](#contribución)
-- [Documentación](#documentación)
-- [Licencia](#licencia)
-- [Contacto](#contacto)
+## Consigna
 
-## Introducción
 
-Explica de manera concisa de qué trata el proyecto y cuál es su propósito.
+Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:
 
-## Características
 
-Enumera las principales características o funcionalidades del proyecto.
+## Aspectos a incluir
 
-## Demo
 
-Proporciona un enlace o muestra imágenes que muestren una demostración del proyecto en funcionamiento.
+- Crear un modelo User el cual contará con los campos:
 
-## Requisitos
+    - first_name:String
+    - last_name:String
+    - email:String (único)
+    - age:Number
+    - password:String(Hash)
+    - cart:Id con referencia a Carts
+    - role:String(default:’user’)
 
-Indica los requisitos necesarios para poder utilizar el proyecto, como software adicional o configuraciones específicas.
+- Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios
+
+- Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección). 
+
+- (Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie.
+
+- Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.
 
 ## Instalación
 

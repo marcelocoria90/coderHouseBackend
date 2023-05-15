@@ -1,6 +1,9 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import util from 'util'
 import { JWT_PRIVATE_KEY } from '../config/auth.config.js'
+
+const jwtSignAsync = util.promisify(jwt.sign)
 
 export const hash = (data) => {
   return bcrypt.hashSync(data, bcrypt.genSaltSync(10))
@@ -10,8 +13,11 @@ export const compare = (data, dataHash) => {
   return bcrypt.compareSync(data, dataHash)
 }
 
-export const encryptJWT = (payload) => {
-  const token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: '24h' })
+export const encryptJWT = async (payload) => {
+  console.log('🐦 encryptJWT:::__:::🔷')
+  console.log(payload)
+
+  const token = await jwtSignAsync(payload, JWT_PRIVATE_KEY)
   return token
 }
 

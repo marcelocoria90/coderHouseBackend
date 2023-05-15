@@ -1,26 +1,32 @@
 /* eslint-disable camelcase */
 import { User } from '../../../services/daos/classes/Users.js'
 import { usersService } from '../../../services/daos/manager/user/users.services.js'
-import { hash, encryptJWT } from '../../../services/utils/criptografia.js'
+import { encryptJWT } from '../../../services/utils/criptografia.js'
 
 export const postUser = async (req, res, next) => {
-  const { email, password, first_name, last_name, age, rol } = req.body
+  const credentials = req.body
 
-  const user = new User({
-    email,
-    password: hash(password),
-    first_name,
-    last_name,
-    age,
-    rol
-  })
+  console.log('🐦 credentials:::__:::🔶')
+  console.log(credentials)
 
-  await usersService.save(user)
+  try {
+    const user = new User(credentials)
 
-  res.cookie('jwt_authorization', encryptJWT(user), {
-    signed: true,
-    httpOnly: true
-  })
+    console.log('🐦 postUser:::__:::🔷')
+    console.log(user.data())
 
-  res.status(201).json(user)
+    await usersService.save(user.data())
+    const token = await encryptJWT(user.data())
+
+    res.cookie('jwt_authorization', token, {
+      signed: true,
+      httpOnly: true
+    })
+
+    console.log(res.cookie)
+
+    res.status(201).json(user)
+  } catch (e) {
+    next(e)
+  }
 }

@@ -13,12 +13,15 @@ class UsersServices {
 
   async findByEmail (email) {
     try {
-      const user = this.#usersDb.find(u => u.email === email)
+      console.log(`🐦 findByEmail:::__:🔷 ${email}`)
+      const user = await this.#usersDb.findOne({ email }).lean()
       if (!user) throw new Error('Usuario no encontrado')
       console.log('🐦 findByUser:::__:🔷')
       console.log(user)
       return { ...user }
     } catch (e) {
+      console.log('ERROR:::findByEmail:::__:🔷')
+      console.log(e)
       throw new Error(e.message)
     }
   }

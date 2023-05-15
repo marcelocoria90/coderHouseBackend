@@ -27,6 +27,9 @@ if (formRegister instanceof HTMLFormElement) {
         password: input_password.value
       }
 
+      console.log('datosUsuario:::__:::🔷')
+      console.log(datosUsuario)
+
       const { status, usuarioCreado } = await fetch('/api/usuarios', {
         method: 'POST',
         headers: {
