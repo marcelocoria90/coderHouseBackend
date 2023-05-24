@@ -14,11 +14,17 @@ export const compare = (data, dataHash) => {
 }
 
 export const encryptJWT = async (payload) => {
-  console.log('🐦 encryptJWT:::__:::🔷')
-  console.log(payload)
+  try {
+    console.log('🐦 encryptJWT:::__:::🔷')
+    console.log(payload)
 
-  const token = await jwtSignAsync(payload, JWT_PRIVATE_KEY)
-  return token
+    const token = await jwtSignAsync(payload, JWT_PRIVATE_KEY)
+    console.log('Token')
+    console.log(token)
+    return token
+  } catch (e) {
+    throw new Error(e)
+  }
 }
 
 export const decryptJWT = (token) => {

@@ -1,4 +1,5 @@
 import { usersDb } from '../../models/mongo/users.model.js'
+import { User } from '../../classes/Users.js'
 class UsersServices {
   #usersDb
   constructor () {
@@ -6,7 +7,9 @@ class UsersServices {
   }
 
   async save (userData) {
-    let newUser = await this.#usersDb.create(userData)
+    const user = new User(userData)
+    let newUser = await this.#usersDb.create(user.data())
+    console.log(newUser)
     newUser = JSON.parse(JSON.stringify(newUser))
     return newUser
   }

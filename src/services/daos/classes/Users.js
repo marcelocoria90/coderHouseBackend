@@ -7,7 +7,7 @@ export class User {
   #password
   #age
   #rol
-  constructor ({ first_name, last_name, email, age, password, rol }) {
+  constructor ({ first_name, last_name, email, age, password = 'pass', rol }) {
     this.#first_name = first_name
     this.#last_name = last_name
     this.#email = email

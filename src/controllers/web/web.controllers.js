@@ -2,9 +2,10 @@ import { encryptJWT } from '../../services/utils/criptografia.js'
 
 export const homeView = (req, res, next) => {
   console.log('🐦 homeView:::__:::🔶')
+  console.log(req.user)
   res.render('profile', {
     pageTitle: 'Profile',
-    user: req.user
+    user: req.user.email
   })
 }
 

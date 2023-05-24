@@ -36,9 +36,10 @@ export const authJwtApi = (req, res, next) => {
   })(req, res, next)
 }
 
-export const authJwtView = (req, res, next) => {
+export function authJwtView (req, res, next) {
   console.log(req.body)
   passport.authenticate('jwt', (err, jwt_payload) => {
+    console.log(jwt_payload)
     if (err || !jwt_payload) return res.redirect('/web/login')
     req.user = jwt_payload
     next()
